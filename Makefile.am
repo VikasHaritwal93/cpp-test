@@ -1,6 +1,6 @@
 SUBDIRS = src tests
 
-bin_PROGRAMS = cpp-test
+bin_PROGRAMS = myproject
 myproject_SOURCES = src/main.c
 
 check_PROGRAMS = test_suite
