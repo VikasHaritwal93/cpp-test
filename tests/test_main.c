@@ -1,42 +1,44 @@
 #include <check.h>
 #include <stdlib.h>
 
-void test_feature(void);
+
 void test_another_feature(void);
 
-// Define your test functions
-START_TEST(test_feature) {
-    // Your test implementation
-}
 
-START_TEST(test_another_feature) {
-    // Your test implementation
-}
-
-// Implement the TTest type
-TTest test_feature = _tcase_add_test(tc, test_feature);
 TTest test_another_feature = _tcase_add_test(tc, test_another_feature);
 
 
+START_TEST(test_another_feature) {
+    // Your test code here
+}
+
 int main(void) {
-    Suite *s;
-    TCase *tc;
+    // Create a test case
+    TCase *tc = tcase_create("MyTest");
 
-    s = suite_create("MyTestSuite");
-    tc = tcase_create("MyTestCase");
+    // Add your test cases to the test case
+    tcase_add_test(tc, test_feature);
+    tcase_add_test(tc, test_another_feature);
 
-    // Update these lines to match the correct function signatures
-    // tcase_add_test(tc, test_feature);
-    // tcase_add_test(tc, test_another_feature);
-tcase_add_test(tc, &test_feature);
-tcase_add_test(tc, &test_another_feature);
+    // Create a test suite
+    Suite *s = suite_create("MySuite");
 
+    // Add your test case to the test suite
     suite_add_tcase(s, tc);
 
-    SRunner *sr = srunner_create(s);
-    srunner_run_all(sr, CK_NORMAL);
-    int number_failed = srunner_ntests_failed(sr);
-    srunner_free(sr);
+    // Create a runner
+    SRunner *runner = srunner_create(s);
 
+    // Run the tests
+    srunner_run_all(runner, CK_NORMAL);
+
+    // Get the number of failures
+    int number_failed = srunner_ntests_failed(runner);
+
+    // Clean up
+    srunner_free(runner);
+
+    // Return the number of failures as the exit code
     return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
+
