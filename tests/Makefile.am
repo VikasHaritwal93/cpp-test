@@ -1,4 +1,4 @@
-bin_PROGRAMS = myproject
+bin_PROGRAMS = cpp-test
 myproject_SOURCES = src/main.c
 
 check_PROGRAMS = test_suite
