@@ -1,2 +1,2 @@
-bin_PROGRAMS = cpp-test
+bin_PROGRAMS = myproject
 myproject_SOURCES = main.c
