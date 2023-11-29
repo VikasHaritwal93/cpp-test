@@ -26,8 +26,10 @@ int main(void) {
     tc = tcase_create("MyTestCase");
 
     // Update these lines to match the correct function signatures
-    tcase_add_test(tc, test_feature);
-    tcase_add_test(tc, test_another_feature);
+    // tcase_add_test(tc, test_feature);
+    // tcase_add_test(tc, test_another_feature);
+tcase_add_test(tc, &test_feature);
+tcase_add_test(tc, &test_another_feature);
 
     suite_add_tcase(s, tc);
 
