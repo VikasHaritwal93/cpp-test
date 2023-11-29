@@ -1,14 +1,12 @@
 #include <check.h>
 #include <stdlib.h>
 
-
-void test_another_feature(void);
-
-
-TTest test_another_feature = _tcase_add_test(tc, test_another_feature);
-
-
+// Declaration of your test function
 START_TEST(test_another_feature) {
+    // Your test code here
+}
+
+START_TEST(test_feature) {
     // Your test code here
 }
 
@@ -17,6 +15,7 @@ int main(void) {
     TCase *tc = tcase_create("MyTest");
 
     // Add your test cases to the test case
+    // Note: You should declare test_feature as well
     tcase_add_test(tc, test_feature);
     tcase_add_test(tc, test_another_feature);
 
@@ -41,4 +40,3 @@ int main(void) {
     // Return the number of failures as the exit code
     return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
-
