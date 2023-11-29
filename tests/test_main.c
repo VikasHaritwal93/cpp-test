@@ -1,12 +1,24 @@
 #include <check.h>
 
-void test_feature(void) {
+void test_feature(void);
+void test_another_feature(void);
+
+START_TEST(test_feature) {
     // Your test implementation
 }
 
-void test_another_feature(void) {
+START_TEST(test_another_feature) {
     // Your test implementation
 }
+
+void test_feature(void) {
+    _test_feature();
+}
+
+void test_another_feature(void) {
+    _test_another_feature();
+}
+
 
 int main(void) {
     Suite *s;
