@@ -1,8 +1,10 @@
 #include <check.h>
+#include <stdlib.h>
 
 void test_feature(void);
 void test_another_feature(void);
 
+// Define your test functions
 START_TEST(test_feature) {
     // Your test implementation
 }
@@ -11,13 +13,9 @@ START_TEST(test_another_feature) {
     // Your test implementation
 }
 
-void test_feature(void) {
-    _test_feature();
-}
-
-void test_another_feature(void) {
-    _test_another_feature();
-}
+// Implement the TTest type
+TTest test_feature = _tcase_add_test(tc, test_feature);
+TTest test_another_feature = _tcase_add_test(tc, test_another_feature);
 
 
 int main(void) {
