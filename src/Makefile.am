@@ -1,2 +1,2 @@
 bin_PROGRAMS = cpp-test
-cpp-test_SOURCES = main.c
+cpp_test_SOURCES = main.c
