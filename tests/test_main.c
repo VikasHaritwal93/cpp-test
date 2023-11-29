@@ -1,23 +1,30 @@
 #include <check.h>
-#include "test_suite.h"
 
-int main() {
+void test_feature(void) {
+    // Your test implementation
+}
+
+void test_another_feature(void) {
+    // Your test implementation
+}
+
+int main(void) {
     Suite *s;
     TCase *tc;
-    SRunner *sr;
 
     s = suite_create("MyTestSuite");
+    tc = tcase_create("MyTestCase");
 
-    tc = tcase_create("Core");
-    tcase_add_test(tc, test_hello_world);
+    // Update these lines to match the correct function signatures
+    tcase_add_test(tc, test_feature);
     tcase_add_test(tc, test_another_feature);
+
     suite_add_tcase(s, tc);
 
-    sr = srunner_create(s);
+    SRunner *sr = srunner_create(s);
     srunner_run_all(sr, CK_NORMAL);
-
     int number_failed = srunner_ntests_failed(sr);
     srunner_free(sr);
 
-    return (number_failed == 0) ? 0 : 1;
+    return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
