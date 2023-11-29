@@ -1,42 +1,36 @@
+// tests/test_main.c
 #include <check.h>
-#include <stdlib.h>
+#include "../main.c"
 
-// Declaration of your test function
-START_TEST(test_another_feature) {
-    // Your test code here
+START_TEST(test_add) {
+    ck_assert_int_eq(add(2, 3), 5);
+    ck_assert_int_eq(add(-1, 1), 0);
 }
 
-START_TEST(test_feature) {
-    // Your test code here
+Suite *my_suite(void) {
+    Suite *s;
+    TCase *tc_core;
+
+    s = suite_create("MySuite");
+
+    tc_core = tcase_create("Core");
+    tcase_add_test(tc_core, test_add);
+    suite_add_tcase(s, tc_core);
+
+    return s;
 }
 
 int main(void) {
-    // Create a test case
-    TCase *tc = tcase_create("MyTest");
+    int number_failed;
+    Suite *s;
+    SRunner *sr;
 
-    // Add your test cases to the test case
-    // Note: You should declare test_feature as well
-    tcase_add_test(tc, test_feature);
-    tcase_add_test(tc, test_another_feature);
+    s = my_suite();
+    sr = srunner_create(s);
 
-    // Create a test suite
-    Suite *s = suite_create("MySuite");
+    srunner_run_all(sr, CK_NORMAL);
+    number_failed = srunner_ntests_failed(sr);
+    srunner_free(sr);
 
-    // Add your test case to the test suite
-    suite_add_tcase(s, tc);
-
-    // Create a runner
-    SRunner *runner = srunner_create(s);
-
-    // Run the tests
-    srunner_run_all(runner, CK_NORMAL);
-
-    // Get the number of failures
-    int number_failed = srunner_ntests_failed(runner);
-
-    // Clean up
-    srunner_free(runner);
-
-    // Return the number of failures as the exit code
     return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
